@@ -25,7 +25,7 @@ public class Product {
     private double price;
     
     @Column(name="image")
-    private double image;
+    private String image;
 
 	public Long getId() {
 		return id;
@@ -59,11 +59,11 @@ public class Product {
 		this.price = price;
 	}
 
-	public double getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(double image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
