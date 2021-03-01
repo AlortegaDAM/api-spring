@@ -76,5 +76,15 @@ public List<Order> getAllOrder(){
             throw new RecordNotFoundException("No order record exist for given id", id);
         }
     }
+    public List<Order> getOrderByUserId(Long id){
+    	List<Order> order = repository.getOrderByUserId(id);
+    
+    	if(order.size() > 0){
+    		return order;
+    	}else{
+    		return new ArrayList<>();
+    	}
+    }
+
 
 }

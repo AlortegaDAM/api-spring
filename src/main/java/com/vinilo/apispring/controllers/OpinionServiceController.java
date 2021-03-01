@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vinilo.apispring.exceptions.RecordNotFoundException;
 import com.vinilo.apispring.model.Opinion;
+import com.vinilo.apispring.model.Order;
 import com.vinilo.apispring.services.OpinionService;
 
 
@@ -40,6 +41,13 @@ public class OpinionServiceController {
 	    	Opinion entity = service.getOpinionById(id);
 
 	        return new ResponseEntity<Opinion>(entity, new HttpHeaders(), HttpStatus.OK);
+	    }
+	    
+	    @GetMapping("/product/{id}")
+	    public ResponseEntity<List<Opinion>> getOpinionByProduct(@PathVariable("id") Long id){
+	        List<Opinion> list = service.getOpinionByProduct(id);
+	        
+	        return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
 	    }
 	   
 

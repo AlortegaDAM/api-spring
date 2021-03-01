@@ -74,5 +74,16 @@ public List<Opinion> getAllOpinion(){
             throw new RecordNotFoundException("No opinion record exist for given id", id);
         }
     }
+    
+    public List<Opinion>getOpinionByProduct(Long id){
+    	List<Opinion> opinion = repository.getOpinionByProduct(id);
+        
+    	if(opinion.size() > 0){
+    		return opinion;
+    	}else{
+    		return new ArrayList<Opinion>();
+    	}
+    	
+    }
 
 }

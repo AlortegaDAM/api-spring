@@ -40,6 +40,12 @@ public class OrderServiceController {
 
 	        return new ResponseEntity<Order>(entity, new HttpHeaders(), HttpStatus.OK);
 	    }
+	    @GetMapping("/user/{id}")
+	    public ResponseEntity<List<Order>> getOrderByUserId(@PathVariable("id") Long id){
+	        List<Order> list = service.getOrderByUserId(id);
+	        
+	        return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
+	    }
 	   
 
 	    @PostMapping
@@ -62,5 +68,7 @@ public class OrderServiceController {
 
 	        return HttpStatus.ACCEPTED;
 	    }
+	    
+	    
 
 }
