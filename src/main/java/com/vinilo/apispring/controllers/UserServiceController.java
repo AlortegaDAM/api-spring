@@ -21,7 +21,7 @@ import com.vinilo.apispring.model.User;
 import com.vinilo.apispring.services.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/client")
 public class UserServiceController {
 	
 	 @Autowired
