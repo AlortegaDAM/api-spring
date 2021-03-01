@@ -22,25 +22,25 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="name")
+	@Column(name="product_name")
     private String name;
 	
-	@Column(name="description")
+	@Column(name="product_description")
     private String description;
     
-    @Column(name="price")
+    @Column(name="product_price")
     private double price;
     
-    @Column(name="image")
+    @Column(name="product_image")
     private String image;
     
     @JsonIgnoreProperties(value = {"product"}, allowSetters = true)
     @OneToMany(mappedBy = "product" , cascade = {CascadeType.ALL})
     private List<Opinion> opinions;
     
-    @JsonIgnoreProperties(value = {"product"}, allowSetters = true)
-    @ManyToMany(mappedBy = "product" , cascade = {CascadeType.MERGE})
-    private List<Order> orders;
+    @JsonIgnoreProperties(value = {"products"}, allowSetters = true)
+    @ManyToMany(mappedBy = "products" , cascade = {CascadeType.MERGE})
+    private List<Order> product_orders;
 
 	public List<Opinion> getOpinions() {
 		return opinions;
@@ -51,11 +51,11 @@ public class Product {
 	}
 
 	public List<Order> getOrders() {
-		return orders;
+		return product_orders;
 	}
 
 	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+		this.product_orders = orders;
 	}
 
 	public Long getId() {

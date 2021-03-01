@@ -35,7 +35,7 @@ public class User {
     private List<Opinion> opinions;
     
     @OneToMany(mappedBy = "user" , cascade = {CascadeType.ALL})
-    private List<Order> orders;
+    private List<Order> user_orders;
     
     public void addOpinion(Opinion opinion){
         if(this.opinions == null){
@@ -46,11 +46,11 @@ public class User {
     }
 
 	public List<Order> getOrders() {
-		return orders;
+		return user_orders;
 	}
 
 	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+		this.user_orders = orders;
 	}
 
 	public List<Opinion> getOpinions() {
@@ -104,7 +104,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", avatar=" + avatar + ", direction="
-				+ direction + ", opinions=" + opinions + ", orders=" + orders + "]";
+				+ direction + ", opinions=" + opinions + ", orders=" + user_orders + "]";
 	}
 
     

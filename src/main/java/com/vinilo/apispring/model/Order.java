@@ -36,11 +36,11 @@ public class Order {
 	@JoinColumn(name = "id_user")
     private User user;
 	
-	@JsonIgnoreProperties(value = {"order"}, allowSetters = true)
+	@JsonIgnoreProperties(value = {"product_orders"}, allowSetters = true)
 	@JoinTable(
 	        name = "order_product",
-	        joinColumns = @JoinColumn(name = "id_order", nullable = false),
-	        inverseJoinColumns = @JoinColumn(name="id_product", nullable = false)
+	        joinColumns = @JoinColumn(name = "id_order"),
+	        inverseJoinColumns = @JoinColumn(name="id_product")
 	    )
 	@ManyToMany(cascade = CascadeType.MERGE)
     private List<Product> products;
@@ -76,7 +76,10 @@ public class Order {
 	}
 
 	public void setUser(User user) {
+		if(user!=null)
 		this.user = user;
+		
+		
 	}
 
 	public List<Product> getProducts() {
@@ -84,6 +87,7 @@ public class Order {
 	}
 
 	public void setProducts(List<Product> products) {
+		
 		this.products = products;
 	}
 
