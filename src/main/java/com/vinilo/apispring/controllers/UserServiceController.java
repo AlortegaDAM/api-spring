@@ -2,7 +2,6 @@ package com.vinilo.apispring.controllers;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,29 +17,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vinilo.apispring.exceptions.RecordNotFoundException;
-import com.vinilo.apispring.model.Product;
-import com.vinilo.apispring.services.ProductService;
-
+import com.vinilo.apispring.model.User;
+import com.vinilo.apispring.services.UserService;
 
 @RestController
-@RequestMapping("/product")
-public class ProductServiceController {
+@RequestMapping("/user")
+public class UserServiceController {
 	
 	 @Autowired
-	    ProductService service;
+	 	UserService service;
+	 
+	 @GetMapping
+	    public ResponseEntity<List<User>> getAllUser() {
+	        List<User> list = service.getAllUser();
 
-	    @GetMapping
-	    public ResponseEntity<List<Product>> getAllProduct() {
-	        List<Product> list = service.getAllProduct();
-
-	        return new ResponseEntity<List<Product>>(list, new HttpHeaders(), HttpStatus.OK);
+	        return new ResponseEntity<List<User>>(list, new HttpHeaders(), HttpStatus.OK);
 	    }
 
 	    @GetMapping("/{id}")
-	    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) throws RecordNotFoundException {
-	        Product entity = service.getProductById(id);
+	    public ResponseEntity<User> getUsertById(@PathVariable("id") Long id) throws RecordNotFoundException {
+	        User entity = service.getUserById(id);
 
-	        return new ResponseEntity<Product>(entity, new HttpHeaders(), HttpStatus.OK);
+	        return new ResponseEntity<User>(entity, new HttpHeaders(), HttpStatus.OK);
 	    }
 	    /*@GetMapping("/search/{category}")
 	    public ResponseEntity<Product> getProductByCategory(@PathVariable("id") Long id) throws RecordNotFoundException {
@@ -50,24 +48,23 @@ public class ProductServiceController {
 	    }*/
 
 	    @PostMapping
-	    public ResponseEntity<Product> createProduct(@Validated @RequestBody Product myProduct) {
-	        Product entity = service.createProduct(myProduct);
+	    public ResponseEntity<User> createUser(@Validated @RequestBody User myProduct) {
+	    	User entity = service.createUser(myProduct);
 
-	        return new ResponseEntity<Product>(entity, new HttpHeaders(), HttpStatus.OK);
+	        return new ResponseEntity<User>(entity, new HttpHeaders(), HttpStatus.OK);
 	    }
 
 	    @PutMapping
-	    public ResponseEntity<Product> updateProduct(@Validated @RequestBody Product myProduct) throws RecordNotFoundException {
-	        Product entity = service.updateProduct(myProduct);
+	    public ResponseEntity<User> updateUser(@Validated @RequestBody User myProduct) throws RecordNotFoundException {
+	    	User entity = service.updateUser(myProduct);
 
-	        return new ResponseEntity<Product>(entity, new HttpHeaders(), HttpStatus.OK);
+	        return new ResponseEntity<User>(entity, new HttpHeaders(), HttpStatus.OK);
 	    }
 
 	    @DeleteMapping("/{id}")
-	    public HttpStatus deleteProductById(@PathVariable("id") Long id) throws RecordNotFoundException {
-	        service.deleteProductById(id);
+	    public HttpStatus deleteUserById(@PathVariable("id") Long id) throws RecordNotFoundException {
+	        service.deleteUserById(id);
 
 	        return HttpStatus.ACCEPTED;
 	    }
-
 }

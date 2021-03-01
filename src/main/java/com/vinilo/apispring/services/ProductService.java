@@ -56,6 +56,8 @@ public class ProductService {
                 newEntity.setPrice(entity.getPrice());
                 newEntity.setDescription(entity.getDescription());
                 newEntity.setImage(entity.getImage());
+                newEntity.setOpinions(entity.getOpinions());
+                newEntity.setOrders(entity.getOrders());;
                 
                 newEntity = repository.save(newEntity);
                 

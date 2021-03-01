@@ -1,10 +1,15 @@
 package com.vinilo.apispring.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +31,29 @@ public class Product {
     
     @Column(name="image")
     private String image;
+    
+
+    @OneToMany(mappedBy = "product" , cascade = {CascadeType.ALL})
+    private List<Opinion> opinions;
+    
+    @ManyToMany(mappedBy = "product")
+    private List<Order> orders;
+
+	public List<Opinion> getOpinions() {
+		return opinions;
+	}
+
+	public void setOpinions(List<Opinion> opinions) {
+		this.opinions = opinions;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 
 	public Long getId() {
 		return id;
