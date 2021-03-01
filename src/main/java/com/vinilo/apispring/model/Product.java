@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="product")
 public class Product {
@@ -32,11 +34,12 @@ public class Product {
     @Column(name="image")
     private String image;
     
-
+    @JsonIgnoreProperties(value = {"product"}, allowSetters = true)
     @OneToMany(mappedBy = "product" , cascade = {CascadeType.ALL})
     private List<Opinion> opinions;
     
-    @ManyToMany(mappedBy = "product")
+    @JsonIgnoreProperties(value = {"product"}, allowSetters = true)
+    @ManyToMany(mappedBy = "product" , cascade = {CascadeType.MERGE})
     private List<Order> orders;
 
 	public List<Opinion> getOpinions() {

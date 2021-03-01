@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="order")
 public class Order {
@@ -34,6 +36,7 @@ public class Order {
 	@JoinColumn(name = "id_user")
     private User user;
 	
+	@JsonIgnoreProperties(value = {"order"}, allowSetters = true)
 	@JoinTable(
 	        name = "order_product",
 	        joinColumns = @JoinColumn(name = "id_order", nullable = false),
