@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class Order {
 	private String description;
 	
 	@JsonIgnoreProperties(value={"user_orders"}, allowSetters=true)
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_user")
     private User user;
 	
@@ -43,7 +44,7 @@ public class Order {
 	        joinColumns = @JoinColumn(name = "id_order"),
 	        inverseJoinColumns = @JoinColumn(name="id_product")
 	    )
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private List<Product> products;
    
 

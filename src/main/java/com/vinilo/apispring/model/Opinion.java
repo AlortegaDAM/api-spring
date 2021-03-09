@@ -4,6 +4,7 @@ package com.vinilo.apispring.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,13 +32,13 @@ public class Opinion {
 	
 	@JsonBackReference
     @JsonIgnoreProperties(value={"opinions"}, allowSetters=true)
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_user")
     private User user;
 	
     @JsonBackReference
     @JsonIgnoreProperties(value={"opinions"}, allowSetters=true)
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_product")
     private Product product;
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,11 +36,11 @@ public class Product {
     private String image;
     
     @JsonIgnoreProperties(value={"product"}, allowSetters=true)
-    @OneToMany(mappedBy = "product" , cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "product" , cascade = {CascadeType.ALL})
     private List<Opinion> opinions;
     
     @JsonIgnoreProperties(value={"products"}, allowSetters=true)
-    @ManyToMany(mappedBy = "products" , cascade = {CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "products" , cascade = {CascadeType.MERGE})
     private List<Order> product_orders;
 
 	public List<Opinion> getOpinions() {
