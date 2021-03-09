@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name="opinion")
@@ -25,11 +27,13 @@ public class Opinion {
 	
 	@Column(name="description")
     private String description;
-    
+
+    @JsonIgnoreProperties("opinions")
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_user")
     private User user;
-    
+
+    @JsonIgnoreProperties("opinions")
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_product")
     private Product product;

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="client")
 public class User {
@@ -31,9 +33,12 @@ public class User {
     @Column(name="direction")
     private String direction;
     
+    @JsonIgnoreProperties("user")
     @OneToMany(mappedBy = "user" , cascade = {CascadeType.ALL})
     private List<Opinion> opinions;
     
+
+    @JsonIgnoreProperties("user")
     @OneToMany(mappedBy = "user" , cascade = {CascadeType.ALL})
     private List<Order> user_orders;
     
