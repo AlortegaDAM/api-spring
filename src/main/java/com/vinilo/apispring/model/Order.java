@@ -103,8 +103,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", date=" + date + ", description=" + description + ", user=" + user.getName() + ", products="
-				+ products + "]";
+		return "Order [id=" + id + ", date=" + date + ", description=" + description+"]";
 	}
 	
 }
