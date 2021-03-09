@@ -30,13 +30,13 @@ public class Opinion {
     private String description;
 	
 	@JsonBackReference
-    @JsonIgnoreProperties("opinions")
+    @JsonIgnoreProperties(value={"opinions"}, allowSetters=true)
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_user")
     private User user;
 	
     @JsonBackReference
-    @JsonIgnoreProperties("opinions")
+    @JsonIgnoreProperties(value={"opinions"}, allowSetters=true)
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_product")
     private Product product;

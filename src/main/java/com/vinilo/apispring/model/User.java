@@ -33,12 +33,12 @@ public class User {
     @Column(name="direction")
     private String direction;
     
-    @JsonIgnoreProperties("user")
+    @JsonIgnoreProperties(value={"user"}, allowSetters=true)
     @OneToMany(mappedBy = "user" , cascade = {CascadeType.ALL})
     private List<Opinion> opinions;
     
 
-    @JsonIgnoreProperties("user")
+    @JsonIgnoreProperties(value={"user"}, allowSetters=true)
     @OneToMany(mappedBy = "user" , cascade = {CascadeType.ALL})
     private List<Order> user_orders;
     

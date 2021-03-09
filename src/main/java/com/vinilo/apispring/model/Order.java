@@ -32,12 +32,12 @@ public class Order {
 	@Column(name="description")
 	private String description;
 	
-	@JsonIgnoreProperties("user_orders")
+	@JsonIgnoreProperties(value={"user_orders"}, allowSetters=true)
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_user")
     private User user;
 	
-	@JsonIgnoreProperties("product_orders")
+	@JsonIgnoreProperties(value={"product_orders"}, allowSetters=true)
 	@JoinTable(
 	        name = "order_product",
 	        joinColumns = @JoinColumn(name = "id_order"),

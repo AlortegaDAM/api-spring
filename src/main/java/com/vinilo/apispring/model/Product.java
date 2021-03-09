@@ -34,11 +34,11 @@ public class Product {
     @Column(name="product_image")
     private String image;
     
-    @JsonIgnoreProperties("product")
+    @JsonIgnoreProperties(value={"product"}, allowSetters=true)
     @OneToMany(mappedBy = "product" , cascade = {CascadeType.ALL})
     private List<Opinion> opinions;
     
-    @JsonIgnoreProperties("products")
+    @JsonIgnoreProperties(value={"products"}, allowSetters=true)
     @ManyToMany(mappedBy = "products" , cascade = {CascadeType.MERGE})
     private List<Order> product_orders;
 
