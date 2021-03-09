@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -27,12 +28,14 @@ public class Opinion {
 	
 	@Column(name="description")
     private String description;
-
+	
+	@JsonBackReference
     @JsonIgnoreProperties("opinions")
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_user")
     private User user;
-
+	
+    @JsonBackReference
     @JsonIgnoreProperties("opinions")
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_product")
